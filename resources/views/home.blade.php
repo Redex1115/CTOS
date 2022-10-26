@@ -4,7 +4,6 @@
 <style>
     .mainFunction{
         display: flex;
-        justify-content: space-around;
         padding-top: 10px;
         padding-bottom: 10px;
         padding-left: 10px;
@@ -151,119 +150,138 @@
         align-items: center;
     }
 
+    .bs-example{
+        margin: 5px;
+    }
+
+    ul{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .tab-pane{
+        background-color: white;
+    }
+
+    .pagination {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+            
+    .pagination li {
+        margin: 0 1px;
+    }
+    
 </style>
 
 <div class="container content">
     <div class="row">
         <div class="col-12">
             <div class="mainFunction">
-                @if(auth()->user()->isAdmin())
-                    <button class="tablink" onclick="openList('Agent','this','white')"><i class="fa fa-user-secret" style="color: black;"><h4>Agent</h4></i></button>
-                    <button class="tablink" onclick="openList('Member','this','white')"><i class="fa fa-group" style="color: black;"><h4>Member</h4></i></button>
-                    <button class="tablink" onclick="openList('Black','this','white')"><i class="fa fa-ban" style="color: black;"><h4>BlackList</h4></i></button>
-                @elseif(auth()->user()->isAgent())
-                    <button class="tablink" onclick="openList('Member','this','white')"><i class="fa fa-group" style="color: black;"><h4>Member</h4></i></button>
-                    <button class="tablink" onclick="openList('Black','this','white')"><i class="fa fa-ban" style="color: black;"><h4>BlackList</h4></i></button>
-                @elseif(auth()->user()->isMember())
-                    <button class="tablink" onclick="openList('Black','this','white')"><i class="fa fa-ban" style="color: black;"><h4>BlackList</h4></i></button>
-                @endif
-            </div>
-            <br>
-            <div id="Agent" class="tabcontent">
-                <div class="card">
-                <br>
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-10">
-                            @foreach($agents as $agent)
-                            <div class="card">
-                                <div class="card-header">
-                                    {{$agent->name}}
-                                    <div class="function">
-                                        <a href="{{ route('agent.edit',['id'=>$agent->id]) }}"><i class="fa fa-cog" style="color: black; font-size: 25px;"></i></a>
-                                        <a href="{{ route('agent.delete',['id'=>$agent->id]) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" style="color: black; font-size: 25px;"></i></a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3" style="border-bottom: 1px solid grey">
-                                        <div class="col-6">
-                                            <p class="card-text" style="border-right: 1px solid grey">Email: {{$agent->email}}</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p class="card-text">Ic number: {{$agent->ic}}</p>
-                                        </div>
-                                    </div> 
-                                    <div class="row g-3">
-                                        <div class="col-4" style="border-right: 1px solid grey">
-                                            <p class="card-text">Hp number: {{$agent->handphone_number}}</p>
-                                            <p class="card-text">Gender: {{$agent->gender}}</p>
-                                        </div>
-                                        <div class="col-4" style="border-right: 1px solid grey">
-                                            <p class="card-text">Bank account nunber: {{$agent->bank_account_number1}}</p>
-                                        </div>
-                                        <div class="col-4">
-                                        </div>
-                                    </div>      
-                                </div>
-                            </div>
+                <div class="bs-example">
+  	                <ul class="nav nav-tabs" id="myTab">
+                        <li class="nav-item">
+                            <a href="#sectionA" class="nav-link active" data-toggle="tab"><i class="fa fa-user-secret" style="color: black;"><h4>Agent</h4></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sectionB" class="nav-link" data-toggle="tab"><i class="fa fa-group" style="color: black;"><h4>Member</h4></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sectionC" class="nav-link" data-toggle="tab"><i class="fa fa-ban" style="color: black;"><h4>BlackList</h4></i></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="sectionA" class="tab-pane show active">
                             <br>
-                            @endforeach
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-10">
+                                    @foreach($agents as $agent)
+                                    <div class="card">
+                                        <div class="card-header">
+                                            {{$agent->name}}
+                                            <div class="function">
+                                                <a href="{{ route('agent.edit',['id'=>$agent->id]) }}"><i class="fa fa-cog" style="color: black; font-size: 25px;"></i></a>
+                                                <a href="{{ route('agent.delete',['id'=>$agent->id]) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" style="color: black; font-size: 25px;"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-4" style="border-right: 1px solid grey;">
+                                                    <p class="card-text">Email: {{$agent->email}}</p>
+                                                    <p class="card-text">Ic: {{$agent->ic}}</p>
+                                                </div>
+                                                <div class="col-4" style="border-right: 1px solid grey;">
+                                                    <p class="card-text">Bank Account: {{$agent->bank_account_number1}}</p>
+                                                    <p class="card-text">Bank Account: {{$agent->bank_account_number2}}</p>
+                                                    <p class="card-text">Bank Account: {{$agent->bank_account_number3}}</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="card-text">Hp no: {{$agent->handphone_number}}</p>
+                                                    <p class="card-text">Gender: {{$agent->gender}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    @endforeach
+                                </div>
+                                <div class="page" style="padding-left: 410px">
+                                   {{$agents->links("pagination::bootstrap-4")}} 
+                                </div> 
+                                <div class="col-1"></div>
+                            </div>
                         </div>
-                        <div class="col-1"></div>
+                        <div id="sectionB" class="tab-pane">
+                        <br>
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-10">
+                                    @foreach($members as $member)
+                                    <div class="card">
+                                        <div class="card-header">
+                                            {{$member->name}}
+                                            <div class="function">
+                                                <a href="{{ route('agent.edit',['id'=>$member->id]) }}"><i class="fa fa-cog" style="color: black; font-size: 25px;"></i></a>
+                                                <a href="{{ route('member.delete',['id'=>$member->id]) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" style="color: black; font-size: 25px;"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row g-3">
+                                                <div class="col-4" style="border-right: 1px solid grey;">
+                                                    <p class="card-text">Email: {{$member->email}}</p>
+                                                    <p class="card-text">Ic: {{$member->ic}}</p>
+                                                </div>
+                                                <div class="col-4" style="border-right: 1px solid grey;">
+                                                    <p class="card-text">Bank Account: {{$member->bank_account_number1}}</p>
+                                                    <p class="card-text">Bank Account: {{$member->bank_account_number2}}</p>
+                                                    <p class="card-text">Bank Account: {{$member->bank_account_number3}}</p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <p class="card-text">Hp no: {{$member->handphone_number}}</p>
+                                                    <p class="card-text">Gender: {{$member->gender}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    @endforeach
+                                </div>
+                                <div class="page" style="padding-left: 410px">
+                                   {{$members->links("pagination::bootstrap-4")}} 
+                                </div>               
+                                <div class="col-1"></div>
+                            </div>
+                            
+                        </div>
+                        <div id="sectionC" class="tab-pane">
+                            <h3>Section C</h3>
+                            <p>Vestibulum nec erat eu nulla rhoncus fringilla ut non neque. Vivamus nibh urna, ornare id gravida ut, mollis a magna. Aliquam porttitor condimentum nisi, eu viverra ipsum porta ut. Nam hendrerit bibendum turpis, sed molestie mi fermentum id. Aenean volutpat velit sem. Sed consequat ante in rutrum convallis. Nunc facilisis leo at faucibus adipiscing.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div id="Member" class="tabcontent">
-                <div class="card">
-                <br>
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-10">
-
-                            @foreach($members as $member)
-                            <div class="card">
-                                <div class="card-header">
-                                    {{$member->name}}
-                                    <div class="function">
-                                        <a href="{{ route('agent.edit',['id'=>$member->id]) }}"><i class="fa fa-cog" style="color: black; font-size: 25px;"></i></a>
-                                        <a href="{{ route('member.delete',['id'=>$member->id]) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" style="color: black; font-size: 25px;"></i></a>
-                                    </div>
-                                    
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3" style="border-bottom: 1px solid grey">
-                                        <div class="col-6">
-                                            <p class="card-text" style="border-right: 1px solid grey">Email: {{$member->email}}</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p class="card-text">Ic number: {{$member->ic}}</p>
-                                        </div>
-                                    </div> 
-                                    <div class="row g-3">
-                                        <div class="col-4" style="border-right: 1px solid grey">
-                                            <p class="card-text">Hp number: {{$agent->handphone_number}}</p>
-                                            <p class="card-text">Gender: {{$agent->gender}}</p>
-                                        </div>
-                                        <div class="col-4" style="border-right: 1px solid grey">
-                                            <p class="card-text">Bank account nunber: {{$member->bank_account_number1}}</p>
-                                        </div>
-                                        <div class="col-4">
-                                        </div>
-                                    </div>      
-                                </div>
-                            </div>
-                            <br>
-                            @endforeach
-                        </div>
-                        <div class="col-1"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="Black" class="tabcontent">
-                <br>
-                <!-- black list content -->
             </div>
         </div>
     </div>
@@ -424,6 +442,7 @@
 
 @section('script')
 <script>
+    //Slide Show
     let slideIndex = 1;
     showSlides(slideIndex);
 
@@ -451,19 +470,16 @@
     dots[slideIndex-1].className += " active";
     }
 
-    function openList(listName, elmnt, color){
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+    //Main
+    $(document).ready(function(){
+        $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
         }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-        }
-        document.getElementById(listName).style.display = "block";
-        elmnt.style.backgroundColor = color;
-    }
+    });
 </script>
 @endsection
 
