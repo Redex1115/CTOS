@@ -20,12 +20,19 @@
                 <h3>Create Agent</h3>
                 <form action="{{ route('register.post') }}" method="POST">
                     {{ csrf_field() }}
-                    <input type="hidden" id="handphone_number" name="handphone_number" value="">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" placeholder="Enter Full Name" id="name" name="name"  required autofocus>
                         @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" placeholder="Enter User Name" id="username" name="username"  required autofocus>
+                        @if ($errors->has('username'))
+                            <span class="text-danger">{{ $errors->first('username') }}</span>
                         @endif
                     </div>
 
@@ -58,6 +65,16 @@
                         <input type="radio" id="gender" name="gender"name="gender" value="Female" style="vertical-align: middle;margin-bottom:2px;margin-left:5px;">
                         <label for="femela" style="font-size:14px;">Female</label>
                     </div>
+
+                    <div class="form-group">
+                        <label for="contactNumber">Contact Number:</label>
+                        <input type="tel" class="form-control" placeholder="Contact Number" id="handphone_number" name="handphone_number" 
+                        pattern="[0-9]{3}-[0-9]{7}|[0-9]{3}-[0-9]{8}" required autofocus>
+                        <p style="margin:1px;font-size:9px;">*Format: 123-4567890/123-45678901</p>
+                        @if ($errors->has('handphone_number'))
+                                        <span class="text-danger">{{ $errors->first('handphone_number') }}</span>
+                        @endif
+                    </div>  
 
                     <div style="text-align:right;"><br>
                         <button type="submit" class="btn btn-primary">Submit</button>

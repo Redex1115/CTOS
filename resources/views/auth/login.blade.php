@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Login Page</title>
         <!-- Scripts -->
@@ -11,93 +11,35 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        <script src="jquery.3.4.1.js"></script>
-        <script src="all.min.js"></script>
         <!-- Styles -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" type='text/css'>
         <link rel="stylesheet" href="path/to/fontawesome.min.css">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/login.css') }}" rel="stylesheet">
         <style>
             body{
                 overflow-x: hidden;
                 background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
             }
-
-            .alert{
-                position: absolute;
-                top: 5px;
-                right: 10px;
-                padding: 20px 40px;
-                border-radius: 5px;
-                border-left: 5px solid rgb(28, 78, 28);
-                background-color: rgb(106, 168, 126);
-                overflow: hidden;
-                animation: alert 3s ease forwards;
-                animation-delay: 5s;
-                opacity: 1;
-                z-index: 999;
-            }
-
-            .check{
-                position: absolute;
-                top: 50%;
-                left: 20px;
-                transform: translateY(-50%);
-                font-size: 30px;
-                color: rgb(3, 71, 3);
-            }
-
-            .msg{
-                font-size: 19px;
-                color: rgb(32, 90, 32);
-                margin: 0 30px;
-                user-select: none;
-            }
-
-            .crose{
-                padding: 20px 18px;
-                background-color: rgb(47, 112, 47);
-                font-size: 30px;
-                color: rgb(33, 83, 33);
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                cursor: pointer;
-                transition: .3s;
-            }
-
-            .crose:hover{
-                background-color: rgb(51, 100, 51);
-            }
-
-            @keyframes alert {
-                from{
-                    transform: translateX(0%);
-                    opacity: 1;
-                }
-                to{
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-
-            .title{
-                padding-left: 40%;
-            }
         </style>
     </head>
     <body>
         @if(Session::has('success'))
-            <div class="alert">
+            <div class="alert" id="alert-success">
                 <span class="check"><i class="fa fa-check-circle"></i></span>
                 <span class="msg">{{Session::get('success')}}</span>
                 <span class="crose" data-dismiss="alert">&times;</span>
             </div>
+        @elseif(Session::has('error'))
+            <div class="alert" id="alert-error">
+                <span class="times"><i class="fa fa-times-circle"></i></span>
+                <span class="error-msg">{{Session::get('error')}}</span>
+                <span class="close" data-dismiss="alert">&times;</span>
+            </div>
         @endif
+        @include('refresh')
         <main class="login-form">
             <div class="container">
                 <section class="vh-100 gradient-custom">
@@ -111,9 +53,9 @@
                                             <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                             <p class="text-white-50 mb-5">Please enter your user name and password</p>
                                             <div class="form-group form-outline form-white mb-4">
-                                                <input type="email" id="email_address" class="form-control form-control-lg" name="email" placeholder="Email" required @if(Cookie::has('email')) value="{{Cookie::get('email')}}" @endif>
-                                                @if ($errors->has('email'))
-                                                    <span class="text-danger">{{ $error->first('email')}}</span>
+                                                <input type="text" id="username" class="form-control form-control-lg" name="username" placeholder="User Name" required @if(Cookie::has('username')) value="{{Cookie::get('username')}}" @endif>
+                                                @if ($errors->has('username'))
+                                                    <span class="text-danger">{{ $error->first('username')}}</span>
                                                 @endif
                                             </div>
                                             <div class="form-group form-outline form-white mb-4">
@@ -123,7 +65,7 @@
                                                 @endif
                                             </div>
                                             <div class="form-outline form-white mb-4">
-                                                <input type="checkbox" name="rememberme" @if(Cookie::has('email')) checked @endif)>Remember Me  
+                                                <input type="checkbox" name="rememberme" @if(Cookie::has('username')) checked @endif)>Remember Me  
                                             </div>
 
                                             <p class="small mb-5 pb-lg-2"><a href="{{ route('forget.password.get') }}" class="text-white-50">Forgot password?</a></p>

@@ -19,6 +19,16 @@
                                   @endif
                               </div>
                           </div>
+
+                          <div class="form-group row">
+                              <label for="username" class="col-md-4 col-form-label text-md-right">User Name</label>
+                              <div class="col-md-6">
+                                  <input type="text" id="username" class="form-control" name="username" required autofocus>
+                                  @if ($errors->has('username'))
+                                      <span class="text-danger">{{ $errors->first('username') }}</span>
+                                  @endif
+                              </div>
+                          </div>
   
                           <div class="form-group row">
                               <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>

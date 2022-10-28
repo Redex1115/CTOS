@@ -1,0 +1,86 @@
+.container-fluid{
+    margin-top: 10px;
+}
+
+.bs-example{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li .a{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #916ad3;
+    color: #491e95;
+    font-size: 18px;
+}
+
+table{
+    width: 100%;
+    text-align: start;
+    border: none;
+}
+
+.btn{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+.nav .nav-link.active{
+    border-top: 2px solid #591BC5;
+    border-right: 2px solid #591BC5;
+    border-left: 2px solid #591BC5;
+}
+
+.nav {
+    border-bottom: 2px solid #591BC5;
+}
+
+.nav .nav-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px 5px 40px;
+}
+
+@media only screen and (min-width: 800px){
+    .nav .nav-link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 100px 5px 100px;
+    }
+}
+
+@media only screen and (min-width: 760px){
+    .nav .nav-link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 90px 5px 90px;
+    }
+}
+
+@media only screen and (max-width: 280px){
+    .nav .nav-link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 25px 5px 25px;
+    }
+}
+
+
+
+
+

@@ -35,6 +35,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="username">User Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter Full User Name" id="username" name="username"  required autofocus>
+                    @if ($errors->has('username'))
+                        <span class="text-danger">{{ $errors->first('username') }}</span>
+                    @endif
+                </div>
+
+                <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control"placeholder="Email" id="email" name="email" required autofocus>
                     @if ($errors->has('email'))
@@ -51,19 +59,6 @@
                     @endif
                 </div>  
                 
-                <div class="form-group">
-                    <!-- <label for="status">Status:</label> -->
-                    <input type="hidden" class="form-control" id="status" name="status" required autofocus>
-                    <!-- <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p> -->
-                    @if ($errors->has('status'))
-                        <span class="text-danger">{{ $errors->first('status') }}</span>
-                    @endif
-                </div>
-
-                <div class="form-group">
-                    <!-- <label for="score"">Score:</label><br> -->
-                    <input type="hidden" id="score" class="form-control" name="score" placeholder="300-850" value="0" min="300" max="850">
-                </div>
 
                 <div class="form-group">
                     <label for="gender">Gender:</label><br>

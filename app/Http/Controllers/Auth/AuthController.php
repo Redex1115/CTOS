@@ -37,22 +37,36 @@ class AuthController extends Controller
 
         $request->validate([
             'password' => 'required',
-            'email' => 'required',
+            'username' => 'required',
         ]);
 
         if($request->has('rememberme')){
-            Cookie::queue('email',$request->email,1440);
+            Cookie::queue('username',$request->username,1440); //1440 means it stays for 24 hours
             Cookie::queue('password',$request->password,1440);
         }
 
-        $credentials = $request->only('password', 'email');
+        $credentials = $request->only('password', 'username');
+        
 
         if(Auth::attempt($credentials)){
-            Session::flash('success',"You have login successfully!");
-            return redirect()->intended('home')->withSuccess('You have successfully logged in!');
+            // set remember me token when user check the box
+            //$remember = Input::get('remember');
+            /*if(!empty($remember)){
+                Auth::login(Auth::user()->id, true);
+            }*/
+            if(Auth::user()->isAdmin()){
+                return redirect()->route('home')->withSuccess('You have successfully logged in!');
+            }
+            else if(Auth::user()->isAgent()){
+                return redirect()->route('home')->withSuccess('You have successfully logged in!');
+            }
+            else if(Auth::user()->isMember()){
+                return redirect()->route('home')->withSuccess('You have successfully logged in!');
+            }
+
         }
 
-        return redirect('login')->with('success','Your password or email is incorrect. Please re-enter again.');
+        return redirect('login')->with('error', 'Username or password is incorrect. Please try again.');;
 
     }
 
@@ -60,17 +74,26 @@ class AuthController extends Controller
         
         $request->validate([
             'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'type' => 'required',
             'handphone_number' => 'nullable',
             'gender' => 'nullable',
         ]);
-    
+
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('home')->withSuccess('You have successfully logged in!');
+        if($request->type == 1){
+            return redirect()->route('home')->withSuccess('You have successfully created a new member!');
+        }
+        elseif($request->type == 2){
+            return redirect()->route('home')->withSuccess('You have successfully created a new agent!');
+        }
+        else{
+            return redirect()->route('home')->withSuccess('You have successfully created a new member!');
+        } 
     }
 
     public function dashboard(){
@@ -86,6 +109,7 @@ class AuthController extends Controller
         
         return User::create([
             'name' => $data['name'],
+            'username' =>$data['username'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
             'handphone_number' => $data['handphone_number'],
@@ -165,6 +189,7 @@ class AuthController extends Controller
         ]);
 
         $users->name = $r->name;
+        $users->username = $r->username;
         $users->password = $r->password;
         $users->email = $r->email;
         $users->handphone_number = $r->handphone_number;
