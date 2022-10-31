@@ -40,4 +40,26 @@ class HomeController extends Controller
         
         return view("home")->with(["agents" => $agents])->with(["members" => $members])->with(["blacklists" => $blacklists]);
     }
+
+    public function agentSearch(Request $request)
+    {
+        $keyword = $request -> keyword;
+        $agents = DB::table('users')->select('users.*')->where('name','like','%'.$keyword.'%')->where('type','2')->paginate(5);
+        $members = DB::table('users')->select('users.*')->where('type','1')->paginate(5);
+        $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
+        ->select('blacklists.*','users.name as uName')->paginate(5);
+
+        return view("home")->with(["agents" => $agents])->with(["members" => $members])->with(["blacklists" => $blacklists]);
+    }
+
+    public function memberSearch()
+    {
+        $keyword = $request -> keyword;
+        $agents = DB::table('users')->select('users.*')->where('type','2')->paginate(5);
+        $members = DB::table('users')->select('users.*')->where('name','like','%'.$keyword.'%')->where('type','1')->paginate(5);
+        $blacklists = DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
+        ->select('blacklists.*','users.name as uName')->paginate(5);
+
+        return view("home")->with(["agents" => $agents])->with(["members" => $members])->with(["blacklists" => $blacklists]);
+    }
 }

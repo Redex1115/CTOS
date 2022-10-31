@@ -22,6 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index']);
+Route::post('agent',[HomeController::class, 'agentSearch'])->name('agent.search');
+Route::post('member',[HomeController::class, 'memberSearch'])->name('member.search');
+
 //Route for authenticating users' login and registration
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 

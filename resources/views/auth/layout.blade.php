@@ -92,6 +92,17 @@
             @endif
         </div>
 
+        <!-- Session -->
+        @if(Session::has('success'))
+            <div class="alert" id="success">
+
+            </div>
+        @elseif(Session::has('error'))
+            <div class="aler" id="error">
+                
+            </div>
+        @endif
+
         <!-- Pull Down Refresh -->
         @include('refresh')
 

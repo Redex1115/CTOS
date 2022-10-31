@@ -11,24 +11,33 @@
             <!-- Nav -->
             <div class="bs-example">
                 <ul class="nav nav-tabs" id="myTab">
+                    
                     <li class="nav-item">
-                        <a href="#sectionA" class="nav-link active" data-toggle="tab"><i class="fa fa-user-secret" style="color: black;"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#sectionB" class="nav-link" data-toggle="tab"><i class="fa fa-group" style="color: black;"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#sectionC" class="nav-link" data-toggle="tab"><i class="fa fa-ban" style="color: black;"></i></a>
-                    </li>
+                            <a href="#sectionA" class="nav-link active" data-toggle="tab"><i class="fa fa-user-secret" style="color: black;"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sectionB" class="nav-link" data-toggle="tab"><i class="fa fa-group" style="color: black;"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sectionC" class="nav-link" data-toggle="tab"><i class="fa fa-ban" style="color: black;"></i></a>
+                        </li>
                 </ul>
             </div>
             <!-- Nav Content -->
             <div class="tab-content">
                 <div id="sectionA" class="tab-pane fade show active">
-                    <br>
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
+                        <form action="{{route('agent.search')}}" method="POST">
+                            @csrf
+                            <div class="search">
+                                <div class="input">
+                                    <input name="keyword" type="search" placeholder="Search">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
                             @foreach($agents as $agent)
                                 <div class="card">
                                     <div class="card-header">
@@ -122,6 +131,15 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
+                        <form action="{{route('member.search')}}" method="POST" class="search-bar">
+                            @csrf
+                            <div class="search">
+                                <div class="input">
+                                    <input name="keyword" type="search" placeholder="Search">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
                             @foreach($members as $member)
                             <div class="card">
                                 <div class="card-header">
@@ -204,7 +222,7 @@
                             <br>
                             @endforeach
                         </div>
-                        <div class="page" style="padding-left: 410px">
+                        <div class="page">
                             {{$members->links("pagination::bootstrap-4")}} 
                         </div> 
                         <div class="col-1"></div>
@@ -219,7 +237,7 @@
                                 <div class="card">
                                     <div class="card-header">
                                         {{$blacklist->name}}
-                                        <a href="{{ route('agent.delete',['id'=>$member->id]) }}" onclick="return confirm('Are you sure to delete this agent?')"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
+                                        <a href="#" onclick="return confirm('Are you sure to delete this agent?')"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
                                     </div>
                                     <div class="card-body">
                                         <h3>Reason: </h3>
