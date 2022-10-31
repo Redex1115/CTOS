@@ -1,6 +1,7 @@
 @extends('auth.layout')
 @section('content')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script> 
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 
 <title>CTOS</title>
@@ -29,17 +30,13 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                        <form action="{{route('agent.search')}}" method="POST">
-                            @csrf
-                            <div class="search">
+                            <div class="search-bar">
                                 <div class="input">
-                                    <input name="keyword" type="search" placeholder="Search">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                    <input name="searchAgent" id="searchAgent" type="search" placeholder="Search">
                                 </div>
                             </div>
-                        </form>
                             @foreach($agents as $agent)
-                                <div class="card">
+                                <div class="card allAgentData">
                                     <div class="card-header">
                                         {{$agent->username}}
                                         <div>
@@ -117,8 +114,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <br>
                             @endforeach
+                            <div class="searchAgentData" id="AgentContent">
+
+                            </div>
                         </div>
                         <div class="page">
                             {{$agents->links("pagination::bootstrap-4")}} 
@@ -127,21 +126,16 @@
                     </div>
                 </div>
                 <div id="sectionB" class="tab-pane show">
-                    <br>
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                        <form action="{{route('member.search')}}" method="POST" class="search-bar">
-                            @csrf
-                            <div class="search">
+                            <div class="search-bar">
                                 <div class="input">
-                                    <input name="keyword" type="search" placeholder="Search">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                    <input name="searchMember" id="searchMember" type="search" placeholder="Search">
                                 </div>
                             </div>
-                        </form>
                             @foreach($members as $member)
-                            <div class="card">
+                            <div class="card allMemberData">
                                 <div class="card-header">
                                     {{$member->username}}
                                     <div>
@@ -221,6 +215,9 @@
                             </div>
                             <br>
                             @endforeach
+                            <div class="searchMemberData" id="MemberContent">
+
+                            </div>
                         </div>
                         <div class="page">
                             {{$members->links("pagination::bootstrap-4")}} 
@@ -261,7 +258,8 @@
 
 @section('script')
 
-<script>
+<script type="text/javascript">
+    $.noConflict();
     $(document).ready(function(){
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
             localStorage.setItem('activeTab', $(e.target).attr('href'));
@@ -270,7 +268,61 @@
         if(activeTab){
             $('#myTab a[href="' + activeTab + '"]').tab('show');
         }
+
+        $('#searchAgent').on('keyup',function()
+        {
+            $value = $(this).val();
+            if($value)
+            {
+                $('.allAgentData').hide();
+                $('.searchAgentData').show();
+            }
+            else
+            {
+                $('.allAgentData').show();
+                $('.searchAgentData').hide();
+            }
+            $.ajax({
+                
+                type: 'get',
+                url: '{{URL::to('search-agent') }}',
+                data: {'search':$value},
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#AgentContent').html(data);
+                }
+            });
+        });
+
+        $('#searchMember').on('keyup',function()
+        {
+            $value = $(this).val();
+            if($value)
+            {
+                $('.allMemberData').hide();
+                $('.searchMemberData').show();
+            }
+            else
+            {
+                $('.allMemberData').show();
+                $('.searchMemberData').hide();
+            }
+            $.ajax({
+                
+                type: 'get',
+                url: '{{URL::to('search-member') }}',
+                data: {'search':$value},
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#MemberContent').html(data);
+                }
+            });
+        });
+
     });
+    
 </script>
 
 @endsection

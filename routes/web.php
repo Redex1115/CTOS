@@ -22,8 +22,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index']);
-Route::post('agent',[HomeController::class, 'agentSearch'])->name('agent.search');
-Route::post('member',[HomeController::class, 'memberSearch'])->name('member.search');
+Route::get('search-agent',[HomeController::class, 'searchAgent'])->name('agent.search');
+Route::get('search-member',[HomeController::class, 'searchMember'])->name('member.search');
 
 //Route for authenticating users' login and registration
 Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -63,5 +63,3 @@ Route::post('reset-password', [ForgotPasswordController::class, 'sendResetPasswo
 
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
