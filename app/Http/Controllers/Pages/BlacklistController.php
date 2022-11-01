@@ -12,9 +12,11 @@ use App\Http\Controllers\Controller;
 
 class BlacklistController extends Controller
 {
-    public function addToBlacklist()
+    public function addToBlacklist($id)
     {
-        return view('pages.blacklist.add');
+        $user = User::find($id);
+
+        return view('pages.blacklist.add',compact('user'));
     }
    
     public function add(Request $request)

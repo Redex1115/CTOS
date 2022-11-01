@@ -109,7 +109,7 @@
                                         <div class="row g-3">
                                             <div class="col-12 d-flex justify-content-around" >
                                                 <a href="{{ route('agent.edit',['id'=>$agent->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-                                                <a href="" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
+                                                <a href="{{route('add.to.blacklist',['id' => $agent->id])}}" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -208,7 +208,7 @@
                                     <div class="row g-3">
                                         <div class="col-12 d-flex justify-content-around">
                                             <a href="{{ route('member.edit',['id'=>$member->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-                                            <a href="" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
+                                            <a href="{{route('add.to.blacklist',['id' => $agent->id])}}" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -233,7 +233,12 @@
                                 <div class="card">
                                     <div class="card-header">
                                         {{$blacklist->name}}
-                                        <a href="#" onclick="return confirm('Are you sure to delete this agent?')"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
+                                        @if($blacklist -> deleted_by == null)
+                                            @if(Auth()->user()->isAdmin() || Auth()->user()->id == $blacklist -> created_by)
+                                                <a href="#" onclick="return confirm('Are you sure to delete this agent?')"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
+                                            @endif
+                                        @endif
+                                        
                                     </div>
                                     <div class="card-body">
                                         <h3>Reason: </h3>
@@ -243,6 +248,11 @@
                                         <h3>Remark: </h3>
                                         <p>{{$blacklist->remark}}</p>
                                     </div>
+                                    @if($blacklist -> deleted_by !== null)
+                                        <div class="deleted-overlay">
+                                            <h3>Deleted</h3>
+                                        </div>
+                                    @endif
                                 </div>
                                 <br>
                             @endforeach

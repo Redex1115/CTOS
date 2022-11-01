@@ -46,7 +46,7 @@ Route::get('view-agent',[AuthController::class, 'viewAgent'])->name('agent.view'
 Route::get('view-member',[AuthController::class, 'viewMember'],[AuthController::class,''])->name('member.view');
 
 //Route for handling matter of blacklisting
-Route::get('add-to-blacklist',[BlacklistController::class, 'addToBlacklist'])->name('add.to.blacklist');
+Route::get('add-to-blacklist/{id}',[BlacklistController::class, 'addToBlacklist'])->name('add.to.blacklist');
 Route::post('post-blacklist',[BlacklistController::class, 'add'])->name('blacklist.post');
 
 Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 

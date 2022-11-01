@@ -104,8 +104,7 @@ class HomeController extends Controller
                         '.'
                             <a href="/agent.edit/'.$agent->id.'" class="btn btn-info">'.'<i class="fa fa-pencil"></i></a>
                         '.'
-                            <a href="" class="btn btn-danger">'.'<i class="fa fa-user-times"></i></a>
-                        '.'
+                            <a href="/add-to-blacklist/'.$agent->id.'" class="btn btn-danger">'.'<i class="fa fa-user-times"></i></a>
                         </div>
                     </div>
                 </div>
@@ -177,8 +176,7 @@ class HomeController extends Controller
                         '.'
                             <a href="/member.edit/'.$member->id.'" class="btn btn-info">'.'<i class="fa fa-pencil"></i></a>
                         '.'
-                            <a href="" class="btn btn-danger">'.'<i class="fa fa-user-times"></i></a>
-                        '.'
+                            <a href="/add-to-blacklist/'.$member->id.'" class="btn btn-danger">'.'<i class="fa fa-user-times"></i></a>
                         </div>
                     </div>
                 </div>
