@@ -47,6 +47,48 @@ class HomeController extends Controller
         $agents = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','2')->paginate(5);
 
         foreach($agents as $agent){
+            if($agent -> ic == null){
+                $ic = "N/A";
+            }
+            else{
+                $ic = $agent -> ic;
+            }
+
+            if($agent -> handphone_number == null){
+                $hp = "N/A";
+            }
+            else{
+                $hp = $agent -> handphone_number;
+            }
+
+            if($agent -> gender == null){
+                $gender = "N/A";
+            }
+            else{
+                $gender = $agent -> gender;
+            }
+
+            if($agent -> bank_account_number1 == null){
+                $ban1 = "N/A";
+            }
+            else{
+                $ban1 = $agent -> bank_account_number1;
+            }
+
+            if($agent -> bank_account_number2 == null){
+                $ban2 = "N/A";
+            }
+            else{
+                $ban2 = $agent -> bank_account_number2;
+            }
+
+            if($agent -> bank_account_number3 == null){
+                $ban3 = "N/A";
+            }
+            else{
+                $ban3 = $agent -> bank_account_number3;
+            }
+
             $output .=
             '<div class="card">
                 <div class="card-header">
@@ -63,38 +105,31 @@ class HomeController extends Controller
                             <table>
                                 <tr>
                                     <th>Email: </th>
-                                    <td> N/A </td>
                                     <td>'.$agent->email.'</td>
                                 </tr>
                                 <tr>
                                     <th>Ic:</th>
-                                    <td> N/A </td>
-                                    <td>'.$agent->ic.'</td>
+                                    <td>'.$ic.'</td>
                                 </tr>
                                 <tr>
                                     <th>Bank Account Number 1: </th>
-                                    <td> N/A </td>
-                                    <td>'.$agent->bank_account_number1.'</td>
+                                    <td>'.$ban1.'</td>
                                 </tr>
                                 <tr>
                                     <th>Bank Account Number 2: </th>
-                                    <td> N/A </td>
-                                    <td>'.$agent->bank_account_number2.'</td>
+                                    <td>'.$ban2.'</td>
                                 </tr>
                                 <tr>
                                     <th>Bank Account Number 3: </th>
-                                    <td> N/A </td>
-                                    <td>'.$agent->bank_account_number3.'</td>
+                                    <td>'.$ban3.'</td>
                                 </tr>
                                 <tr>
                                     <th>Handphone Number: </th>
-                                    <td> N/A </td>
-                                    <td>'.$agent->handphone_number.'</td>
+                                    <td>'.$hp.'</td>
                                 </tr>
                                 <tr>
                                     <th>Gender: </th>
-                                    <td> N/A </td>
-                                    <td>'.$agent->gender.'</td>
+                                    <td>'.$gender.'</td>
                                 </tr>
                             </table>
                         </div>
@@ -119,6 +154,48 @@ class HomeController extends Controller
         $members = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','1')->paginate(5);
 
         foreach($members as $member){
+            if($member -> ic == null){
+                $ic = "N/A";
+            }
+            else{
+                $ic = $member -> ic;
+            }
+
+            if($member -> handphone_number == null){
+                $hp = "N/A";
+            }
+            else{
+                $hp = $member -> handphone_number;
+            }
+
+            if($member -> gender == null){
+                $gender = "N/A";
+            }
+            else{
+                $gender = $member -> gender;
+            }
+
+            if($member -> bank_account_number1 == null){
+                $ban1 = "N/A";
+            }
+            else{
+                $ban1 = $member -> bank_account_number1;
+            }
+
+            if($member -> bank_account_number2 == null){
+                $ban2 = "N/A";
+            }
+            else{
+                $ban2 = $member -> bank_account_number2;
+            }
+
+            if($member -> bank_account_number3 == null){
+                $ban3 = "N/A";
+            }
+            else{
+                $ban3 = $member -> bank_account_number3;
+            }
+
             $output .=
             '<div class="card">
                 <div class="card-header">
@@ -135,38 +212,31 @@ class HomeController extends Controller
                             <table>
                                 <tr>
                                     <th>Email: </th>
-                                    <td> N/A </td>
                                     <td>'.$member->email.'</td>
                                 </tr>
                                 <tr>
                                     <th>Ic:</th>
-                                    <td> N/A </td>
-                                    <td>'.$member->ic.'</td>
+                                    <td>'.$ic.'</td>
                                 </tr>
                                 <tr>
                                     <th>Bank Account Number 1: </th>
-                                    <td> N/A </td>
-                                    <td>'.$member->bank_account_number1.'</td>
+                                    <td>'.$ban1.'</td>
                                 </tr>
                                 <tr>
                                     <th>Bank Account Number 2: </th>
-                                    <td> N/A </td>
-                                    <td>'.$member->bank_account_number2.'</td>
+                                    <td>'.$ban2.'</td>
                                 </tr>
                                 <tr>
                                     <th>Bank Account Number 3: </th>
-                                    <td> N/A </td>
-                                    <td>'.$member->bank_account_number3.'</td>
+                                    <td>'.$ban3.'</td>
                                 </tr>
                                 <tr>
                                     <th>Handphone Number: </th>
-                                    <td> N/A </td>
-                                    <td>'.$member->handphone_number.'</td>
+                                    <td>'.$hp.'</td>
                                 </tr>
                                 <tr>
                                     <th>Gender: </th>
-                                    <td> N/A </td>
-                                    <td>'.$member->gender.'</td>
+                                    <td>'.$gender.'</td>
                                 </tr>
                             </table>
                         </div>

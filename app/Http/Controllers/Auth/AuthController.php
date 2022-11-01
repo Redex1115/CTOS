@@ -86,13 +86,13 @@ class AuthController extends Controller
         $check = $this->create($data);
 
         if($request->type == 1){
-            return redirect()->route('/home')->withSuccess('You have successfully created a new member!');
+            return redirect()->route('home')->withSuccess('You have successfully created a new member!');
         }
         elseif($request->type == 2){
-            return redirect()->route('/home')->withSuccess('You have successfully created a new agent!');
+            return redirect()->route('home')->withSuccess('You have successfully created a new agent!');
         }
         else{
-            return redirect()->route('/home')->withSuccess('You have successfully created a new member!');
+            return redirect()->route('home')->withSuccess('You have successfully created a new member!');
         } 
     }
 
