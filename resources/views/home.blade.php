@@ -235,7 +235,7 @@
                                         {{$blacklist->name}}
                                         @if($blacklist -> deleted_by == null)
                                             @if(Auth()->user()->isAdmin() || Auth()->user()->id == $blacklist -> created_by)
-                                                <a href="#" onclick="return confirm('Are you sure to delete this agent?')"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
+                                                <a href="{{ route('blacklist.delete',['id'=>$blacklist->id]) }}" onclick="return confirm('Are you sure to delete this agent?')"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
                                             @endif
                                         @endif
                                         
@@ -257,6 +257,9 @@
                                 <br>
                             @endforeach
                         </div>
+                        <div class="page">
+                            {{$blacklists->links("pagination::bootstrap-4")}} 
+                        </div> 
                         <div class="col-1"></div>
                     </div>
                 </div>

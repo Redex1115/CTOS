@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Pages;
 
 use DB;
+use Session;
 use App\Models\User;
 use App\Models\Blacklist;
 use Illuminate\Http\Request;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAgent;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BlacklistController extends Controller
 {
@@ -113,7 +115,7 @@ class BlacklistController extends Controller
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was updated successfully!");
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 
     public function delete($id)
@@ -123,6 +125,6 @@ class BlacklistController extends Controller
         $blacklists->save();
 
         Session::flash('success',"Blacklisted person was deleted from record successfully!");
-        return redirect()->back();
+        return redirect()->route('home');
     }
 }
