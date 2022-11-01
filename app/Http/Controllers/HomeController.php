@@ -114,10 +114,10 @@ class HomeController extends Controller
         }
         return response($output);
     }
-    public function searchMember(Request $request)
+    public function searchMember(Request $r)
     {
         $output = "";
-        $members = DB::table('users')->where('name','like','%'.$r->search.'%')->paginate(5);
+        $members = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','1')->paginate(5);
 
         foreach($members as $member){
             $output .=
@@ -126,7 +126,7 @@ class HomeController extends Controller
                     '.$member->username.'
                     <div>
                     '.'
-                        <a href="/agent.delete/'.$member->id.'" onclick="return confirm("Are you sure to delete this agent?")">'.'<i class="fa fa-trash" style="color: black; font-size: 25px;"></i></a>
+                        <a href="/agent.delete/'.$member->id.'" onclick="return confirm("Are you sure to delete this member?")">'.'<i class="fa fa-trash" style="color: black; font-size: 25px;"></i></a>
                     '.'
                     </div>
                 </div>

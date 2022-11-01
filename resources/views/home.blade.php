@@ -213,7 +213,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
                             @endforeach
                             <div class="searchMemberData" id="MemberContent">
 

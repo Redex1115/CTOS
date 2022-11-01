@@ -63,3 +63,5 @@ Route::post('reset-password', [ForgotPasswordController::class, 'sendResetPasswo
 
 
 Auth::routes();
+
+Route::get('home', [HomeController::class, 'index'])->name('home');
