@@ -39,7 +39,7 @@ class BlacklistController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect('dashboard')->withSuccess('You have added a person to blacklist.');
+        return redirect('home')->withSuccess('You have added a person to blacklist.');
     }
 
     public function create(array $data)

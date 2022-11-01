@@ -12,8 +12,18 @@ class Blacklist extends Model
     protected $fillable =[
         'id',
         'name',
+        'email',
+        'handphone_number',
+        'ic',
+        'bank_account_number1',
+        'bank_account_number2',
+        'bank_account_number3',
+        'gender',
         'reason',
-        'remark'
+        'remark',
+        'created_by',
+        'deleted_by',
+        'social_media_account'
     ];
 
     public function blacklist(){

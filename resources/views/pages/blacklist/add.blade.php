@@ -23,6 +23,11 @@
     th, td{
         border: 1px solid black !important;
     }
+
+    tr input[type=text]{
+        border: 0;
+        outline: none;
+    }
 </style>
 
 <div class="container">
@@ -33,8 +38,6 @@
         <div class="card-body">
             <form action="{{ route('blacklist.post') }}" method="POST">
                 @csrf
-                <input type="hidden" value="{{$user -> email }}" name="email" id="email" class="form-control">
-                <input type="hidden" value="{{Auth::user()->id}}" name="created_by" id="created_by" class="form-control">
                 <div class="form-group">
                     <label for="name">User Name</label>
                     <div class="input d-flex">
@@ -68,22 +71,25 @@
                                                     <td>N/A</td>
                                                 @elseif($user -> ic !== null)
                                                     <td>{{$user -> ic}}</td>
+                                                    <input type="hidden" value="{{$user -> ic}}" name="ic" id="ic" class="form-control">
                                                 @endif
                                             </tr>
                                             <tr>
                                                 <th>Handphone No: </th>
                                                 @if($user -> handphone_number == null)
-                                                    <td>N/A</td>
+                                                    <td><input type="text" placeholder="N/A" name="handphone_number" id="handphone_number" class="form-control"></td>
                                                 @elseif($user -> handphone_number !== null)
                                                     <td>{{$user -> handphone_number}}</td>
+                                                    <input type="hidden" value="{{$user -> handphone_number}}" name="handphone_number" id="handphone_number" class="form-control">
                                                 @endif
                                             </tr>
                                             <tr>
                                                 <th>Gender: </th>
                                                 @if($user -> gender == null)
-                                                    <td>N/A</td>
+                                                    <td><input type="text" placeholder="N/A" name="gender" id="gender" class="form-control"></td>
                                                 @elseif($user -> gender !== null)
                                                     <td>{{$user -> gender}}</td>
+                                                    <input type="hidden" value="{{$user -> gender}}" name="gender" id="gender" class="form-control">
                                                 @endif
                                             </tr>
                                         </table>
@@ -93,25 +99,28 @@
                                             <tr>
                                                 <th>Bank Account No: </th>
                                                 @if($user -> bank_account_number1 == null)
-                                                    <td>N/A</td>
+                                                    <td><input type="text" placeholder="N/A" name="bank_account_number1" id="bank_account_number1" class="form-control"></td>
                                                 @elseif($user -> bank_account_number1 !== null)
                                                     <td>{{$user -> bank_account_number1}}</td>
+                                                    <input type="hidden" value="{{$user -> bank_account_number1}}" name="bank_account_number1" id="bank_account_number1" class="form-control">
                                                 @endif
                                             </tr>
                                             <tr>
                                                 <th>Bank Account No: </th>
                                                 @if($user -> bank_account_number2 == null)
-                                                    <td>N/A</td>
+                                                    <td><input type="text" placeholder="N/A" name="bank_account_number2" id="bank_account_number2" class="form-control"></td>
                                                 @elseif($user -> bank_account_number2 !== null)
                                                     <td>{{$user -> bank_account_number2}}</td>
+                                                    <input type="hidden" value="{{$user -> bank_account_number2}}" name="bank_account_number2" id="bank_account_number2" class="form-control">
                                                 @endif
                                             </tr>
                                             <tr>
                                                 <th>Bank Account No: </th>
                                                 @if($user -> bank_account_number3 == null)
-                                                    <td>N/A</td>
+                                                    <td><input type="text" placeholder="N/A" name="bank_account_number3" id="bank_account_number3" class="form-control"></td>
                                                 @elseif($user -> bank_account_number3 !== null)
                                                     <td>{{$user -> bank_account_number3}}</td>
+                                                    <input type="hidden" value="{{$user -> bank_account_number3}}" name="bank_account_number3" id="bank_account_number3" class="form-control">
                                                 @endif
                                             </tr>
                                         </table>
@@ -131,6 +140,11 @@
                 <div class="form-group">
                     <label for="remark">Remark</label>
                     <input type="text" name="remark" id="remark" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="social_media_account" id="social_medial_account" class="form-control">
+                    <input type="hidden" value="{{$user -> email}}" name="email" id="email" class="form-control">
+                    <input type="hidden" value="{{Auth::user()->id}}" name="created_by" id="created_by" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary float-right" onclick="return confirm('Are you sure to add this user to blacklist?')">Submit</button>
             </form>

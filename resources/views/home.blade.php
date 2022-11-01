@@ -208,7 +208,7 @@
                                     <div class="row g-3">
                                         <div class="col-12 d-flex justify-content-around">
                                             <a href="{{ route('member.edit',['id'=>$member->id]) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-                                            <a href="{{route('add.to.blacklist',['id' => $agent->id])}}" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
+                                            <a href="{{route('add.to.blacklist',['id' => $member->id])}}" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
                                         </div>
                                     </div>
                                 </div>
