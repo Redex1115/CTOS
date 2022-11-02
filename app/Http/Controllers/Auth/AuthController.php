@@ -80,6 +80,7 @@ class AuthController extends Controller
             'type' => 'required',
             'handphone_number' => 'nullable',
             'gender' => 'nullable',
+            'permission' => 'required',
         ]);
 
         $data = $request->all();
@@ -115,6 +116,7 @@ class AuthController extends Controller
             'handphone_number' => $data['handphone_number'],
             'gender' => $data['gender'],
             'type' => $data['type'],
+            'permission' => $data['permission'],
         ]);
     }
 
@@ -186,6 +188,7 @@ class AuthController extends Controller
             'bank_account_number1' => 'nullable',
             'bank_account_number2' => 'nullable',
             'bank_account_number3' => 'nullable',
+            'permission' => 'required',
         ]);
 
         $users->name = $r->name;
@@ -198,6 +201,7 @@ class AuthController extends Controller
         $users->bank_account_number1 = $r->bank_account_number1;
         $users->bank_account_number2 = $r->bank_account_number2;
         $users->bank_account_number3 = $r->bank_account_number3;
+        $users->permission = $r->permission;
         $users->save();
 
         Session::flash('success',"User was updated successfully!");
@@ -211,7 +215,7 @@ class AuthController extends Controller
 
         return redirect('login');
     }
-    
+
     public function profile(){
         $users = User::all()->where('id','=',Auth::id());
         return view('pages.profile')->with(["users" => $users]);

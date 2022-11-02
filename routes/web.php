@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('search-agent',[HomeController::class, 'searchAgent'])->name('agent.search');
 Route::get('search-member',[HomeController::class, 'searchMember'])->name('member.search');
+Route::get('search-blacklist',[HomeController::class, 'searchBlacklist'])->name('blacklist.search');
 
 //Route for authenticating users' login and registration
 Route::get('login', [AuthController::class, 'index'])->name('login');

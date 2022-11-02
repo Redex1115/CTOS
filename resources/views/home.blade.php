@@ -225,12 +225,16 @@
                     </div>
                 </div>
                 <div id="sectionC" class="tab-pane">
-                    <br>
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
+                            <div class="search-bar">
+                                <div class="input">
+                                    <input name="searchBlacklist" id="searchBlacklist" type="search" placeholder="Search">
+                                </div>
+                            </div>
                             @foreach($blacklists as $blacklist)
-                                <div class="card">
+                                <div class="card allBlacklistData">
                                     <div class="card-header">
                                         {{$blacklist->name}}
                                         @if($blacklist -> deleted_by == null)
@@ -254,8 +258,10 @@
                                         </div>
                                     @endif
                                 </div>
-                                <br>
                             @endforeach
+                            <div class="searchBlacklistData" id="BlacklistContent">
+
+                            </div>
                         </div>
                         <div class="page" id="page">
                             {{$blacklists->links("pagination::bootstrap-4")}} 
@@ -330,6 +336,33 @@
                 {
                     console.log(data);
                     $('#MemberContent').html(data);
+                    document.getElementById('page').style.display = "none";
+                }
+            });
+        });
+        $('#searchBlacklist').on('keyup',function()
+        {
+            $value = $(this).val();
+            if($value)
+            {
+                $('.allBlacklistData').hide();
+                $('.searchBlacklistData').show();
+            }
+            else
+            {
+                $('.allBlacklistData').show();
+                $('.searchBlacklistData').hide();
+            }
+            $.ajax({
+                
+                type: 'get',
+                url: '{{URL::to('search-blacklist') }}',
+                data: {'search':$value},
+                success:function(data)
+                {
+                    console.log(data);
+                    $('#BlacklistContent').html(data);
+                    document.getElementById('page').style.display = "none";
                 }
             });
         });
