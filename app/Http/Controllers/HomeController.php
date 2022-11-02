@@ -258,17 +258,173 @@ class HomeController extends Controller
 
     public function searchBlacklist(Request $r){
         $output = "";
-        $blacklists=DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')
-        ->select('blacklists.*','users.name as uName')->where('blacklists.name','like','%'.$r->search.'%')->get();
+        $blacklists=DB::table('blacklists')->leftJoin('users','blacklists.created_by','=','users.id')->select('blacklists.*','users.name as uName')->where('blacklists.name','like','%'.$r->search.'%')->get();
 
         foreach($blacklists as $blacklist){
-            if(Auth::user()->isAdmin() || Auth::user()->id == $blacklist -> created_by){
+            if(Auth::user()->isAdmin()){
+                if(Auth::user()->id == $blacklist -> created_by){
+                    if($blacklist -> deleted_by == null){
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                                '.'
+                                <a href="/blacklist.delete/'.$blacklist->id.'" onclick="return confirm("Are you sure to delete this agent?")">'.'<i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
+                                '.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                        </div>';
+                    }
+                    else{
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                            <div class="deleted-overlay">
+                                <h3>Deleted</h3>
+                            </div>
+                        </div>';
+                    }
+                }
+                else if(Auth::user()->id !== $blacklist -> created_by){
+                    if($blacklist -> deleted_by == null){
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                        </div>';
+                    }
+                    else{
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                            <div class="deleted-overlay">
+                                <h3>Deleted</h3>
+                            </div>
+                        </div>';
+                    }
+                }
+            }
+            else if(Auth::user()->isAgent()){
+                if(Auth::user()->id == $blacklist -> created_by){
+                    if($blacklist -> deleted_by == null){
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                                '.'
+                                <a href="/blacklist.delete/'.$blacklist->id.'" onclick="return confirm("Are you sure to delete this agent?")">'.'<i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
+                                '.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                        </div>';
+                    }
+                    else{
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                            <div class="deleted-overlay">
+                                <h3>Deleted</h3>
+                            </div>
+                        </div>';
+                    }
+                }
+                else if(Auth::user()->id !== $blacklist -> created_by){
+                    if($blacklist -> deleted_by == null){
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                        </div>';
+                    }
+                    else{
+                        $output .=
+                        '<div class="card">
+                            <div class="card-header">
+                                '.$blacklist->name.'
+                            </div>
+                            <div class="card-body">
+                                <h3>Reason: </h3>
+                                <p>'.$blacklist->reason.'</p>
+                            </div>
+                            <div class="card-body">
+                                <h3>Remark: </h3>
+                                <p>'.$blacklist->remark.'</p>
+                            </div>
+                            <div class="deleted-overlay">
+                                <h3>Deleted</h3>
+                            </div>
+                        </div>';
+                    }
+                }
+            }
+            else if(Auth::user()->isMember()){
                 if($blacklist -> deleted_by == null){
-                    $output .= 
+                    $output .=
                     '<div class="card">
                         <div class="card-header">
                             '.$blacklist->name.'
-                            <a href="/blacklist.delete/'.$blacklist->id.'" onclick="return confirm("Are you sure to delete this agent?")"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
                         </div>
                         <div class="card-body">
                             <h3>Reason: </h3>
@@ -281,11 +437,10 @@ class HomeController extends Controller
                     </div>';
                 }
                 else{
-                    $output .= 
+                    $output .=
                     '<div class="card">
                         <div class="card-header">
                             '.$blacklist->name.'
-                            <a href="/blacklist.delete/'.$blacklist->id.'" onclick="return confirm("Are you sure to delete this agent?")"><i class="fa fa-unlock" style="color: black; font-size: 25px;"></i></a>
                         </div>
                         <div class="card-body">
                             <h3>Reason: </h3>
@@ -299,27 +454,9 @@ class HomeController extends Controller
                             <h3>Deleted</h3>
                         </div>
                     </div>';
-
-                    
                 }
             }
-            else{
-                $output .=
-                '<div class="card">
-                    <div class="card-header">
-                        '.$blacklist->name.'
-                    </div>
-                    <div class="card-body">
-                        <h3>Reason: </h3>
-                        <p>'.$blacklist->reason.'</p>
-                    </div>
-                    <div class="card-body">
-                        <h3>Remark: </h3>
-                        <p>'.$blacklist->remark.'</p>
-                    </div>
-                </div>';
-            }
-            return response($output);                           
+            return response($output);                       
         }
     }
 }

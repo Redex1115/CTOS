@@ -68,7 +68,7 @@
                                             <tr>
                                                 <th>Ic: </th>
                                                 @if($user -> ic == null)
-                                                    <td>N/A</td>
+                                                    <td><input type="text" placeholder="N/A" name="ic" id="ic" class="form-control"></td>
                                                 @elseif($user -> ic !== null)
                                                     <td>{{$user -> ic}}</td>
                                                     <input type="hidden" value="{{$user -> ic}}" name="ic" id="ic" class="form-control">

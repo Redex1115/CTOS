@@ -22,22 +22,49 @@
                 overflow-x: hidden;
                 background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
             }
+            #error{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 998;
+                user-select: none;
+                background:  #f2f2f2;
+                width: 310px;
+                text-align: center;
+                align-items: center;
+                padding: 40px;
+                border: 1px solid #b3b3b3;
+                box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.2);
+            }
+
+            #error i{
+                font-size: 60px;
+                color:rgb(189, 19, 19);
+                padding: 20px 40px;
+                margin: -50px 0 0 0;
+            }
+
+            #error .btn{
+                margin: 20px 0 -10px 0;
+                text-decoration: none;
+                background: #999999;
+                color: white;
+                font-size: 18px;
+                padding: 10px 13px;
+                width: 100px;
+                border-radius: 12px;
+            }
+
+            @media only screen and (max-width: 300px){
+                #error{
+                    width: 230px;
+                }
+            }
         </style>
     </head>
     <body>
-        @if(Session::has('success'))
-            <div class="alert" id="alert-success">
-                <span class="check"><i class="fa fa-check-circle"></i></span>
-                <span class="msg">{{Session::get('success')}}</span>
-                <span class="crose" data-dismiss="alert">&times;</span>
-            </div>
-        @elseif(Session::has('error'))
-            <div class="alert" id="alert-error">
-                <span class="times"><i class="fa fa-times-circle"></i></span>
-                <span class="error-msg">{{Session::get('error')}}</span>
-                <span class="close" data-dismiss="alert">&times;</span>
-            </div>
-        @endif
+        @include('pages.session')
         @include('refresh')
         <main class="login-form">
             <div class="container">

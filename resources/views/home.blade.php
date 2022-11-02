@@ -254,7 +254,7 @@
                                     </div>
                                     @if($blacklist -> deleted_by !== null)
                                         <div class="deleted-overlay">
-                                            <h3 class="popup" onClick="show()" style="cursor: pointer;">Deleted</h3>
+                                            <h3>Deleted</h3>
                                         </div>
                                     @endif
                                 </div>
@@ -340,6 +340,7 @@
                 }
             });
         });
+
         $('#searchBlacklist').on('keyup',function()
         {
             $value = $(this).val();
@@ -369,10 +370,6 @@
 
     });
     
-    function show(){
-        var popup = document.getElementById("myPopup");
-        popup.classList.toggle("show");
-    }
 </script>
 
 @endsection
