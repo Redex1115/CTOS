@@ -124,7 +124,7 @@
                     <ul class="h-100 d-flex align-items-center justify-content-around ps-0">
                         <li><a href="#" onclick="history.back()"><i class="fa fa-fw fa-solid fa-arrow-left"></i></a></li>
                         <li><a href="/home"><i class="fa fa-fw fa-home"></i></a></li>
-                        <li><a href="#"><i class="fa fa-fw fa-solid fa-user"></i></a></li>
+                        <li><a href="profile"><i class="fa fa-fw fa-solid fa-user"></i></a></li>
                     </ul>
                 </div>
             </div>

@@ -119,7 +119,7 @@
 
                             </div>
                         </div>
-                        <div class="page">
+                        <div class="page" id="page">
                             {{$agents->links("pagination::bootstrap-4")}} 
                         </div> 
                         <div class="col-1"></div>
@@ -218,7 +218,7 @@
 
                             </div>
                         </div>
-                        <div class="page">
+                        <div class="page" id="page">
                             {{$members->links("pagination::bootstrap-4")}} 
                         </div> 
                         <div class="col-1"></div>
@@ -257,7 +257,7 @@
                                 <br>
                             @endforeach
                         </div>
-                        <div class="page">
+                        <div class="page" id="page">
                             {{$blacklists->links("pagination::bootstrap-4")}} 
                         </div> 
                         <div class="col-1"></div>
@@ -303,6 +303,7 @@
                 {
                     console.log(data);
                     $('#AgentContent').html(data);
+                    document.getElementById('page').style.display = "none";
                 }
             });
         });

@@ -44,7 +44,7 @@ class HomeController extends Controller
     public function searchAgent(Request $r)
     {
         $output = "";
-        $agents = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','2')->paginate(5);
+        $agents = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','2')->get();
 
         foreach($agents as $agent){
             if($agent -> ic == null){
@@ -151,7 +151,7 @@ class HomeController extends Controller
     public function searchMember(Request $r)
     {
         $output = "";
-        $members = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','1')->paginate(5);
+        $members = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','1')->get();
 
         foreach($members as $member){
             if($member -> ic == null){
@@ -253,6 +253,9 @@ class HomeController extends Controller
             </div>
             <br>';
         }
-        return response($output);
+
+        if($members -> count() >= 1){
+            return response($output)->render();
+        }
     }
 }

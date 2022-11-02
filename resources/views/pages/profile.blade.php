@@ -1,97 +1,97 @@
 @extends('auth.layout')
 @section('content')
+
 <style>
- @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
-*{
-   margin:0;
-}
-h2 {
-    font-family: 'Noto Serif', serif; 
-}
+    .card{
+        margin: 10px 10px 20px 10px;
+        font-size: 18px;
+    }
+
+    h3{
+        background-color: #916ad3;
+        color: #491e95;
+        text-align: center;
+    }
+
+    table{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    th{
+        padding: 10px 10px;
+    }
+
+    td{
+       text-align: right;
+       padding: 10px 10px;
+    }
+
+    .function{
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0 10px 0;
+    }
+
 </style>
-<br>
-<div class="profile">
-    <div class="container">
+
+<div class="row">
+    <div class="col-12">  
         <div class="card">
-            <div class="card-header bg-transparent text-center">
-            <h2>Profile</h2>
-            </div>
-            <div class="card-body"> 
-        <div class="column" style=" float: left;padding-left:90px; margin-top:60px;">
-            <div class="col-md-5">
-            <div class="d-flex flex-column align-items-center text-center py-5">
+        @csrf
+            <h3>Profile</h3>
             @foreach($users as $user)
-            <label class="font-weight-bold" style="width:90px;">{{ $user->name }}</label>
-            <label class="text-black-50">{{ $user->email }}</label>
-            </div>
-        </div>
-</div>
-        <div class="column" style=" float: left;">
-        <div class="col-md-10 border-left">
-            <div class="p-3 py-3">
-                <div class="d-flex justify-content-between mb-3">
-                    <h4 class="text-left" style="width:220px;">Profile Settings</h4>
-                
+                <div class="row">
+                    <div class="col-12">
+                        <table>
+                            <tr>
+                                <th>Name : </th>
+                                <td>{{ $user->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>User Name: </th>
+                                <td>{{ $user->username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email: </th>
+                                <td>{{ $user->email }}</td>
+                            </tr>       
+                            <tr>
+                                <th>Phone Number: </th>
+                                <td>{{ $user->handphone_number }}</td>
+                            </tr>                       
+                            <tr>
+                                <th>IC Number : </th>
+                                <td>{{ $user->ic }}</td>
+                            </tr>                       
+                            <tr>
+                                <th>Bank Account No.1 : </th>
+                                <td>{{ $user->bank_account_number1 }}</td>
+                            </tr>                         
+                            <tr>
+                                <th>Bank Account No.2 : </th>
+                                <td>{{ $user->bank_account_number2 }}</td>
+                            </tr>
+                            <tr>
+                                <th>Bank Account No.3 : </th>
+                                <td>{{ $user->bank_account_number3 }}</td>
+                            </tr>
+                            <tr>
+                                <th>Gender : </th>
+                                <td>{{ $user->gender}}</td>
+                            </tr>
+                        </table>
+                        <div class="function">
+                            <a href="{{ route('profile.edit')}}" class="btn btn-warning">Edit Profile</a>
+                            <a href="{{ route('password.change')}}" class="btn btn-danger">Change Password</a>
+                        </div>
+                    </div>
                 </div>
-                <table>
-                    <tbody>
-                   
-                        <tr>
-                            <td>Name</td>
-                            <td>:&nbsp</td>
-                            <td>{{ $user->name }}</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->email }}</td>
-                        </tr>
-                        <tr>
-                            <td style="width:200px;">Phone Number</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->handphone_number }}</td>
-                        </tr>
-                        <tr>
-                            <td>IC</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->ic }}</td>
-                        </tr>
-                        <tr>
-                            <td>Bank Account Number</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->bank_account_number }}</td>
-                        </tr>
-                        <tr>
-                            <td>Bank Company</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->bank_company }}</td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->gender}}</td>
-                        </tr>
-                        <tr>
-                            <td>Status</td>
-                            <td>:&nbsp </td>
-                            <td>{{ $user->status}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                </div>
-
+            @endforeach
             </div>
-</div>
-            <div class="text-right" style="position: absolute;right:40;bottom:10;">
-                <button class="btn btn-primary profile-button" type="button">Save Profile</button>
-            </div>
-
-            
-        </div>
-</div>
+        </div>   
     </div>
 </div>
-
 
 @endsection

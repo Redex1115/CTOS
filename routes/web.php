@@ -50,8 +50,15 @@ Route::get('add-to-blacklist/{id}',[BlacklistController::class, 'addToBlacklist'
 Route::post('post-blacklist',[BlacklistController::class, 'add'])->name('blacklist.post');
 Route::get('delete-blacklisted-person/{id}',[BlacklistController::class, 'delete'])->name('blacklist.delete');
 
+// Profile
 Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
+Route::get('editProfile', [AuthController::class, 'editProfile'])->name('profile.edit');
+Route::post('update-profile',[AuthController::class, 'updateProfile'])->name('profile.update');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+// Change Password
+Route::get('change-password', [AuthController::class, 'editPassword'])->name('password.change');
+Route::post('update-password',[AuthController::class, 'updatePassword'])->name('password.update');
 
 
 Route::get('dashboard',[AuthController::class,'showAgent'])->name('dashboard');
