@@ -253,7 +253,7 @@ class AuthController extends Controller
         $users->bank_account_number2 = $r->bank_account_number2;
         $users->bank_account_number3 = $r->bank_account_number3;
         $users->save();
-
+        
         Session::flash('success',"Profile was updated successfully!");
         return redirect()->route('profile.view');
     }

@@ -76,6 +76,14 @@
                         @endif
                     </div>  
 
+                    <div class="form-group">
+                        <label for="permission">Permission</label>
+                        <select name="permission" id="permission">
+                            <option value="1">Yes</option>
+                            <option value="2">No</option>
+                        </select>
+                    </div>
+
                     <div style="text-align:right;"><br>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button class="btn btn-primary" onclick="history.back()">Cancel</button>
