@@ -84,6 +84,8 @@ class AuthController extends Controller
             'created_by' => 'required',
         ]);
 
+        
+
         $data = $request->all();
         $check = $this->create($data);
 

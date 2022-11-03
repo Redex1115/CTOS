@@ -14,8 +14,8 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-    // 'host' => env('MAIL_HOST','smtp.mailtrap.io'),
-    // 'port' => env('MAIL_PORT','2525'),
+    'host' => env('MAIL_HOST','smtp.googlemail.com'),
+    'port' => env('MAIL_PORT','465'),
 
     /*
     |--------------------------------------------------------------------------

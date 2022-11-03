@@ -13,7 +13,7 @@
     </div>
     <div class="card-body">
         @foreach($users as $user)
-            <form method="POST" action="{{ route('password.update') }}">
+            <form method="POST" action="{{ route('passwordUpdate') }}">
                 @csrf
                 <input type="hidden" value="{{Auth()->user()->id}}" name="userID" id="userID" class="form-control">
                 <div class="form-group">

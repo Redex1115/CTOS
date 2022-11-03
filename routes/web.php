@@ -29,7 +29,7 @@ Route::get('search-blacklist',[HomeController::class, 'searchBlacklist'])->name(
 //Route for authenticating users' login and registration
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
-Route::get('registration', [AuthController::class, 'registration'])->name('register');
+// Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::get('userRegistration', [AuthController::class, 'userRegistration'])->name('user.register');
 Route::get('agent-registration', [AuthController::class, 'agentRegistration'])->name('agent.register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
@@ -55,11 +55,11 @@ Route::get('delete-blacklisted-person/{id}',[BlacklistController::class, 'delete
 Route::get('profile', [AuthController::class, 'profile'])->name('profile.view'); 
 Route::get('editProfile', [AuthController::class, 'editProfile'])->name('profile.edit');
 Route::post('update-profile',[AuthController::class, 'updateProfile'])->name('profile.update');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('user.logout');
 
 // Change Password
 Route::get('change-password', [AuthController::class, 'editPassword'])->name('password.change');
-Route::post('update-password',[AuthController::class, 'updatePassword'])->name('password.update');
+Route::post('update-password',[AuthController::class, 'updatePassword'])->name('passwordUpdate');
 
 
 Route::get('dashboard',[AuthController::class,'showAgent'])->name('dashboard');
