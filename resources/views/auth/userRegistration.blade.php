@@ -84,7 +84,10 @@
                 
                 <div class="form-group">
                     <input type="hidden" value="2" name="permission" id="permission" class="form-control">
+                    <input type="hidden" value="{{Auth()->user()->id}}" name="created_by" id="created_by" class="form-control">
                 </div>
+
+                
 
                 <div class="form-group" style="text-align:right;"><br>
                     <button type="submit" class="btn btn-primary">Submit</button>

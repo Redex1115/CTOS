@@ -81,6 +81,7 @@ class AuthController extends Controller
             'handphone_number' => 'nullable',
             'gender' => 'nullable',
             'permission' => 'required',
+            'created_by' => 'required',
         ]);
 
         $data = $request->all();
@@ -117,6 +118,7 @@ class AuthController extends Controller
             'gender' => $data['gender'],
             'type' => $data['type'],
             'permission' => $data['permission'],
+            'created_by' => $data['created_by'],
         ]);
     }
 

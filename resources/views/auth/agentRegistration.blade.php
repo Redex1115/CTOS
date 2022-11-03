@@ -84,6 +84,10 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <input type="hidden" value="{{Auth()->user()->id}}" name="created_by" id="created_by" class="form-control">
+                    </div>
+
                     <div style="text-align:right;"><br>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button class="btn btn-primary" onclick="history.back()">Cancel</button>
