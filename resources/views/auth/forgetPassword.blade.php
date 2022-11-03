@@ -19,21 +19,12 @@
         <link rel="stylesheet" href="path/to/fontawesome.min.css">
         <style>
             body{
-                background: ;
-                overflow: hidden;
-                position: relative;
-                height: 100vh;
-                width: 100%;
-                padding:0;
-                margin:0px;
+                overflow-x: hidden;
             }
 
-            #headerNav{
-                top: 0;
-                width: 100%;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                border-radius: 5px;
+            .header i{
+                font-size: 30px;
+                color: black;
             }
 
             button{
@@ -41,77 +32,23 @@
                 text-decoration: none;
             }
 
-            .alert{
-                position: absolute;
-                top: 5px;
-                right: 10px;
-                padding: 20px 40px;
-                border-radius: 5px;
-                border-left: 5px solid rgb(28, 78, 28);
-                background-color: rgb(106, 168, 126);
-                overflow: hidden;
-                z-index: 999;
-            }
 
-            .check{
-                position: absolute;
-                top: 50%;
-                left: 20px;
-                transform: translateY(-50%);
-                font-size: 30px;
-                color: rgb(3, 71, 3);
-            }
-
-            .msg{
-                font-size: 19px;
-                color: rgb(32, 90, 32);
-                margin: 0 30px;
-                user-select: none;
-            }
-
-            .crose{
-                padding: 20px 18px;
-                background-color: rgb(47, 112, 47);
-                font-size: 30px;
-                color: rgb(33, 83, 33);
-                position: absolute;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                cursor: pointer;
-                transition: .3s;
-            }
-
-            .crose:hover{
-                background-color: rgb(51, 100, 51);
-            }
 
         </style>
     </head>
     <body>
-        <div class="headerNav" id="headerNav">
-            <div class="container d-flex justify-content-between">
-                <div class="side">
-                    <span style="font-size:30px;" onclick="history.back()"><i class="fa fa-long-arrow-left"></i></span>
-                </div>
-                <div class="title d-flex justify-content-center align-items-center">
-                    <a href="#"><i class="fa fa-info-circle"></i></a>
+        @include('pages.session')
+        @include('refresh')
+        <div class="row">
+            <div class="col-1">
+                <div class="header">
+                    <a href="{{ route('login')}}"><i class="fa fa-long-arrow-left"></i></a>
                 </div>
             </div>
-        </div>
-        @if(Session::has('success'))
-            <div class="alert">
-                <span class="check"><i class="fa fa-check-circle"></i></span>
-                <span class="msg">{{Session::get('success')}}</span>
-                <span class="crose" data-dismiss="alert">&times;</span>
-            </div>
-        @endif
-        <div class="row" style="margin-top: 50px;">
-            <div class="col-1"></div>
             <div class="col-10">
+                <br><br>
                 <h2>Reset Password</h2>
                 <p>Enter the email associated with your account and we'll send an email with instructions to reset your password.</p>
-                <br>
                 <form action="{{ route('forget.password.post') }}" method="POST">
                     @csrf
                     <div class="form-group row">

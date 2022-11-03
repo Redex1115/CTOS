@@ -14,8 +14,9 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-    'host' => env('MAIL_HOST','smtp.mailtrap.io'),
-    'port' => env('MAIL_PORT','2525'),
+    // 'host' => env('MAIL_HOST','smtp.mailtrap.io'),
+    // 'port' => env('MAIL_PORT','2525'),
+
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -92,8 +93,8 @@ return [
     |
     */
 
-    'from' => ['address' => 'alvin3850@gmail.com', 'name' => 'CTOS'],
-    'encryption' => env('MAIL_ENCRYPTION','tls'),
+    'from' => ['address' => 'exsuper.asia@gmail.com', 'name' => 'CTOS'],
+    'encryption' => env('MAIL_ENCRYPTION','ssl'),
 
     /*
     |--------------------------------------------------------------------------
