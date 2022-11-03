@@ -86,6 +86,8 @@
             @elseif(auth()->user()->isAgent() && auth()->user()->permission == 1)
                 <a href="/userRegistration">Register Member</a>
                 <a href="{{ route('logout') }}">Logout</a>
+            @elseif(auth()->user()->isAgent() && auth()->user()->permission !== 1)
+                <a href="{{ route('logout') }}">Logout</a>
             @elseif(auth()->user()->isMember())
                 <a href="{{ route('logout') }}">Logout</a>
             @endif
