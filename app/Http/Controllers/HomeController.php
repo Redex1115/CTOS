@@ -44,7 +44,16 @@ class HomeController extends Controller
     public function searchAgent(Request $r)
     {
         $output = "";
-        $agents = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','2')->get();
+        $agents = DB::table('users')->where('type', '=', '2')->where(function ($query) use($r){
+            $query->where('name','like','%'.$r->search.'%')
+            ->orWhere('email','like','%'.$r->search.'%')
+            ->orWhere('ic','like','%'.$r->search.'%')
+            ->orWhere('bank_account_number1','like','%'.$r->search.'%')
+            ->orWhere('bank_account_number2','like','%'.$r->search.'%')
+            ->orWhere('bank_account_number3','like','%'.$r->search.'%')
+            ->orWhere('handphone_number','like','%'.$r->search.'%')
+            ->orWhere('username','like','%'.$r->search.'%');
+        })->get();
 
         foreach($agents as $agent){
             if($agent -> ic == null){

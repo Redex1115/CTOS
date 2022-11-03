@@ -14,6 +14,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="username">User Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter Your User Name" id="username" name="username" value="{{ $user-> username }}" require autofocus>
+                </div>
+
+                <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control"placeholder="Email" id="email" name="email"  value="{{$user->email}}" required autofocus>
                 </div>
@@ -32,16 +37,23 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="hidden" class="form-control" id="bank_account_number" name="bank_account_number"  value="{{$user->bank_account_number}}" required autofocus>
+                    <label for="bank_account_number">Bank Account Number 1: </label>
+                    <input type="number" class="form-control" id="bank_account_number1" name="bank_account_number1"  value="{{$user->bank_account_number1}}" required autofocus>
                 </div>
 
                 <div class="form-group">
-                    <input type="hidden" class="form-control"  id="bank_company" name="bank_company"   value="{{$user->bank_company}}" required autofocus>
+                    <label for="bank_account_number">Bank Account Number 2: </label>
+                    <input type="number" class="form-control" id="bank_account_number2" name="bank_account_number2"  value="{{$user->bank_account_number2}}" required autofocus>
                 </div>
 
                 <div class="form-group">
-                    <input type="hidden" class="form-control" id="status" name="status" required autofocus>
-                    <!-- <p style="margin:1px;font-size:9px;">*No Score, Poor, Low, Fair, Good, Very Good, &nbspExcellent</p>-->
+                    <label for="bank_account_number">Bank Account Number 3: </label>
+                    <input type="number" class="form-control" id="bank_account_number3" name="bank_account_number3"  value="{{$user->bank_account_number3}}" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="handphone_number">Handphone Number :</label>
+                    <input type="text" class="form-control"  id="handphone_number" name="handphone_number"   value="{{$user->handphone_number}}" required autofocus>
                 </div>
                     
                 <div class="form-group">
@@ -59,6 +71,14 @@
                 <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" class="form-control" placeholder="Password" id="password" name="password" value="{{$user->password}}" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    Permission: 
+                    <select name="permission" id="permission">
+                        <option value="1">Yes</option>
+                        <option value="2">No</option>
+                    </select>
                 </div>
 
                 <div class="form-group" style="text-align:right;"><br>

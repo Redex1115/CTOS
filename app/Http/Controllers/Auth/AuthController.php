@@ -184,6 +184,7 @@ class AuthController extends Controller
         $users = User::find($r->id);
         $r->validate([
             'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
             'email' => 'required',
             'handphone_number' => 'nullable',
@@ -209,7 +210,7 @@ class AuthController extends Controller
         $users->save();
 
         Session::flash('success',"User was updated successfully!");
-        return redirect();
+        return redirect('home');
     }
 
     public function logout()

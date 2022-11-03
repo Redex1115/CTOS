@@ -66,6 +66,10 @@
                     <input type="password" class="form-control" placeholder="Password" id="password" name="password" value="{{$user->password}}" required autofocus>
                 </div>
 
+                <div class="form-group">
+                    <input type="hidden" name="permission" id="permission" value="2">
+                </div>
+
                 <div class="form-group" style="text-align:right;"><br>
                     <button  type="submit" class="btn btn-primary">Submit</button>
                     <button type="Submit" class="btn btn-primary" onclick="history.back()">Cancel</button>

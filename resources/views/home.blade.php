@@ -32,7 +32,7 @@
                         <div class="col-10">
                             <div class="search-bar">
                                 <div class="input">
-                                    <input name="searchAgent" id="searchAgent" type="search" placeholder="Search">
+                                    <input name="searchAgent" id="searchAgent" type="search" placeholder="Search Agent">
                                 </div>
                             </div>
                             @foreach($agents as $agent)
@@ -131,7 +131,7 @@
                         <div class="col-10">
                             <div class="search-bar">
                                 <div class="input">
-                                    <input name="searchMember" id="searchMember" type="search" placeholder="Search">
+                                    <input name="searchMember" id="searchMember" type="search" placeholder="Search Member">
                                 </div>
                             </div>
                             @foreach($members as $member)
@@ -230,7 +230,7 @@
                         <div class="col-10">
                             <div class="search-bar">
                                 <div class="input">
-                                    <input name="searchBlacklist" id="searchBlacklist" type="search" placeholder="Search">
+                                    <input name="searchBlacklist" id="searchBlacklist" type="search" placeholder="Search Blacklist">
                                 </div>
                             </div>
                             @foreach($blacklists as $blacklist)
