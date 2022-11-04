@@ -160,7 +160,16 @@ class HomeController extends Controller
     public function searchMember(Request $r)
     {
         $output = "";
-        $members = DB::table('users')->where('name','like','%'.$r->search.'%')->where('type','1')->get();
+        $members = DB::table('users')->where('type', '=', '1')->where(function ($query) use($r){
+            $query->where('name','like','%'.$r->search.'%')
+            ->orWhere('email','like','%'.$r->search.'%')
+            ->orWhere('ic','like','%'.$r->search.'%')
+            ->orWhere('bank_account_number1','like','%'.$r->search.'%')
+            ->orWhere('bank_account_number2','like','%'.$r->search.'%')
+            ->orWhere('bank_account_number3','like','%'.$r->search.'%')
+            ->orWhere('handphone_number','like','%'.$r->search.'%')
+            ->orWhere('username','like','%'.$r->search.'%');
+        })->get();
 
         foreach($members as $member){
             if($member -> ic == null){

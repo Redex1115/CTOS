@@ -14,13 +14,13 @@
                 <ul class="nav nav-tabs" id="myTab">
                     
                     <li class="nav-item">
-                            <a href="#sectionA" class="nav-link active" data-toggle="tab"><i class="fa fa-user-secret" style="color: black;"></i></a>
+                            <a href="#sectionA" class="nav-link active" data-toggle="tab"><i class="fa fa-user-secret" style="color: black;">&nbsp;<span style="font-size: 15px;">Agent</span></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#sectionB" class="nav-link" data-toggle="tab"><i class="fa fa-group" style="color: black;"></i></a>
+                            <a href="#sectionB" class="nav-link" data-toggle="tab"><i class="fa fa-group" style="color: black;">&nbsp;<span style="font-size: 15px;">Member</span></i></a>
                         </li>
                         <li class="nav-item">
-                            <a href="#sectionC" class="nav-link" data-toggle="tab"><i class="fa fa-ban" style="color: black;"></i></a>
+                            <a href="#sectionC" class="nav-link" data-toggle="tab"><i class="fa fa-ban" style="color: black;">&nbsp;<span style="font-size: 15px;">Blacklist</span></i></a>
                         </li>
                 </ul>
             </div>
