@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" value="{{Auth()->user()->id}}" name="created_by" id="created_by" class="form-control">
+                        <input type="hidden" value="{{Auth()->user()->name}}" name="created_by" id="created_by" class="form-control">
                     </div>
 
                     <div style="text-align:right;"><br>
